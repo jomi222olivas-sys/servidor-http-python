@@ -1,49 +1,49 @@
-# 🌐 Servidor Web HTTP Multi-hilo en Python (Raw Sockets)
+# Multi-threaded HTTP Server in Python (Pure Sockets)
 
-Un servidor web ligero implementado desde cero utilizando Python puro. Este proyecto simula las funcionalidades básicas de servidores como Apache o Nginx, implementando el protocolo HTTP/1.1 manualmente sin el uso de frameworks externos.
+This project is an educational implementation of a web server built from scratch using **Python 3** and its native `socket` module. It avoids external frameworks (like Flask or Django) to demonstrate the low-level workings of the HTTP protocol and TCP/IP communications.
 
-## 🚀 Características
+## 🚀 Technical Features
 
-* **Sin Frameworks:** Construido puramente con `socket` para entender la comunicación TCP/IP a bajo nivel.
-* **Concurrencia:** Utiliza `threading` para manejar múltiples clientes simultáneamente.
-* **Protocolo HTTP Manual:** Parseo de peticiones y construcción de encabezados (Headers) HTTP/1.1 artesanales.
-* **Soporte de Métodos:**
-    * `GET`: Sirve archivos estáticos (HTML, CSS).
-    * `POST`: Maneja envío de formularios básicos.
-* **Manejo de Errores:** Respuestas 404 personalizadas.
+* **Object-Oriented Architecture (OOP):** The server is encapsulated within the `HTTPWebServer` class, ensuring modularity and scalability.
+* **Concurrency (Multi-threading):** Uses the `threading` module to handle multiple clients simultaneously without blocking the server.
+* **Logging System:** Implements professional console logging with timestamps and severity levels (`INFO`, `ERROR`) to monitor traffic and debug issues.
+* **Static File Handling:** Serves HTML, CSS, and images by automatically detecting the correct MIME type (using `mimetypes`).
+* **Basic HTTP/1.1 Protocol:**
+    * `200 OK` responses for found files.
+    * `404 Not Found` responses for missing resources.
+    * Basic handling of `GET` and `POST` methods.
 
-## 📋 Requisitos
+## 📋 Requirements
 
-* Python 3.x
-* Ninguna librería externa requerida (solo librerías estándar).
+* Python 3.x installed.
+* Web browser (Chrome, Firefox, Edge, etc.).
 
-## 🔧 Instalación y Uso
+## 🛠️ Installation & Usage
 
-1.  **Clonar el repositorio:**
+1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/TU_USUARIO/mi-servidor-http.git](https://github.com/TU_USUARIO/mi-servidor-http.git)
-    cd mi-servidor-http
+    git clone [https://github.com/jomi222olivas-sys/servidor-http-python.git](https://github.com/jomi222olivas-sys/servidor-http-python.git)
+    cd servidor-http-python
     ```
 
-2.  **Iniciar el servidor:**
+2.  **Run the server:**
     ```bash
-    python servidor.py
+    py server.py
     ```
+    *(Or `python server.py` depending on your system).*
 
-3.  **Probar en el navegador:**
-    Abre tu navegador y visita: `http://127.0.0.1:8080`
+3.  **Access in browser:**
+    Open your web browser and go to: `http://127.0.0.1:8080`
 
-## 🧠 ¿Cómo funciona?
+## 📂 Project Structure
 
-El servidor inicia un socket TCP en el puerto 8080. Al recibir una conexión:
-1.  Se crea un nuevo **hilo (thread)** para no bloquear el servidor principal.
-2.  Se decodifica la petición cruda (bytes a string).
-3.  Se analiza la primera línea del header HTTP (ej. `GET /index.html HTTP/1.1`).
-4.  Dependiendo de la ruta y el método, se construye una respuesta byte a byte, incluyendo los **Headers** necesarios (`Content-Type`, `Content-Length`) y el cuerpo del mensaje.
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) para más detalles.
-
----
-*Proyecto creado con fines educativos para comprender la arquitectura interna de la web.*
+```text
+servidor-http-python/
+│
+├── public/              # Public assets directory
+│   ├── index.html       # Homepage (Welcome card)
+│   └── style.css        # Stylesheets
+│
+├── server.py            # Main logic (Sockets + Threading + OOP)
+├── README.md            # Project documentation
+└── LICENSE              # MIT License
